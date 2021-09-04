@@ -7,7 +7,7 @@
       </span>
       <div class="option-fieldset">
         {% for variant in product.variants %}
-          <input class="js-variant-radio" id="variant-{{ forloop.index }}" name="id" type="radio" value="{{variant.id}}" data-inventory-quantity="{{variant.inventory_quantity}}" {% unless variant.available %} disabled {% endunless %}>
+          <input class="js-variant-radio variant-radio" id="variant-{{ forloop.index }}" name="id" type="radio" value="{{variant.id}}" data-inventory-quantity="{{variant.inventory_quantity}}" {% unless variant.available %} disabled {% endunless %}>
           <label for="variant-{{ forloop.index }}">{{variant.title}}</label>
         {% endfor %}
       </div>
