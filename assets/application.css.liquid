@@ -87,6 +87,26 @@ ol {
 }
 
 /* Mixins */
+button[type="submit"],
+.button,
+.quantity-button {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  text-align: left;
+}
+
 .header-global,
 .footer-bottom,
 .option-row {
@@ -98,7 +118,8 @@ ol {
 
 h4,
 .h4,
-.text-link {
+.text-link,
+.variant-radio + label {
   font-size: var(--type-body-sm);
   font-weight: var(--type-bold);
   text-transform: uppercase;
@@ -154,6 +175,29 @@ p a:hover {
 
 .text-link {
   color: var(--black);
+}
+
+button[type="submit"],
+.button {
+  width: 100%;
+  padding: var(--line-global);
+  text-align: center;
+  font-size: var(--type-body-med);
+  line-height: var(--line-global);
+  background: var(--gold);
+  color: var(--white);
+}
+
+button[type="submit"]:disabled,
+.button:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+button[type="submit"]:not(:disabled):hover,
+.button:not(:disabled):hover {
+  filter: saturate(1.1) contrast(1.1) brightness(0.9);
 }
 
 /* Utility Classes */
@@ -299,7 +343,6 @@ p a:hover {
 }
 
 /* Index */
-
 .index-top {
   height: 50vh;
   min-height: 400px;
@@ -378,7 +421,7 @@ p a:hover {
   margin: 0 auto;
 }
 
-.product-info-section p {
+.product-info-section .product-description {
   margin-bottom: var(--line-global);
 }
 
@@ -433,4 +476,52 @@ p a:hover {
   overflow: hidden;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
+}
+
+.variant-radio + label {
+  display: inline-block;
+  cursor: pointer;
+  padding: calc(var(--line-global) / 5);
+  border: 1px solid transparent;
+  color: var(--text-color-light-white);
+}
+
+.variant-radio:checked + label {
+  color: var(--white);
+  border: 1px solid var(--white);
+}
+
+.variant-radio:disabled + label {
+  cursor: not-allowed;
+  text-decoration: line-through;
+  color: var(--text-color);
+}
+
+.quantity-button {
+  font-size: var(--line-global);
+  line-height: var(--line-global);
+  text-align: center;
+  font-weight: var(--type-bold);
+  color: var(--text-color-white);
+  width: var(--line-global);
+}
+
+.quantity-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.quantity-button:not(disabled):hover {
+  color: var(--white);
+}
+
+.quantity-text {
+  display: inline-block;
+  text-align: center;
+  min-width: var(--line-global);
+  margin: 0 calc(var(--line-global) / 2);
+}
+
+#add-to-cart-button {
+  margin-top: var(--line-global);
 }
