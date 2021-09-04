@@ -24,7 +24,7 @@
         {% endif %}
 
         {% if product.available %}
-          <a href="{{ product.url }}">{{ 'product.card.more_info' | t }}</a>
+          <a class="text-link" href="{{ product.url }}">{{ 'product.card.more_info' | t }}</a>
           {%else%}
           {{ 'product.form.sold_out' | t }}
         {% endif %}

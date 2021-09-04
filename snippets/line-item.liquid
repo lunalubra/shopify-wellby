@@ -1,8 +1,8 @@
 <div class="line-item">
   <div class="line-info">
-    <a href="{{ item.url }}">
-      {{ item.product.title }}
-      <span>x{{item.quantity}}</span>
+    <a href="{{ item.url }}" class="line-title">
+      <span class="h3">{{ item.product.title }}</span>
+      <span class="accent-color">x{{item.quantity}}</span>
     </a>
     <p>
       {{ item.variant.title }}
@@ -16,10 +16,10 @@
 
   <div class="line-image">
     <a href="{{ item.url }}">
-      <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
+      <img src="{{ item | img_url: '200x200', crop: 'center' }}" alt="{{ item.title | escape }}">
     </a>
 
-    <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
+    <a class="js-remove-line remove-line" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
       <img src="{{ 'x-remove.svg' | asset_url }} " alt="Remove">
     </a>
 

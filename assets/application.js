@@ -59,9 +59,90 @@ $(document).ready(function () {
     }
   };
 
+  let onAddToCart = function (event) {
+    event.preventDefault();
+
+    $.ajax({
+      type: "POST",
+      url: "/cart/add.js",
+      data: $(this).serialize(),
+      dataType: "json",
+      success: onCartUpdated,
+      error: onError
+    });
+  };
+
+  let onLineRemoved = function (event) {
+    event.preventDefault();
+    let $removeLink = $(this);
+    let removeQuery = $removeLink.attr("href").split("change?")[1];
+
+    $.post("/cart/change.js", removeQuery, onCartUpdated, "json");
+  };
+
+  let onCartUpdated = function () {
+    $.ajax({
+      type: "GET",
+      url: "/cart",
+      context: document.body,
+      success: function (context) {
+        let $dataCartContext = $(context).find(".js-cart-page-contents");
+        let dataCartHtml = $dataCartContext.html();
+        let dataCartItemCount = $dataCartContext.attr("data-cart-item-count");
+        let $miniCartContext = $(".js-mini-cart-contents");
+        let $cartItemCount = $(".js-cart-item-count");
+
+        $cartItemCount.text(dataCartItemCount);
+        $miniCartContext.html(dataCartHtml);
+
+        if (parseInt(dataCartItemCount) > 0) {
+          openCart();
+        } else {
+          closeCart();
+        }
+      }
+    });
+  };
+
+  let onError = function (XMLHttpRequest, textStatus) {
+    let data = XMLHttpRequest.responseJSON;
+
+    alert(data.status + "-" + data.message + ":" + data.description);
+  };
+
+  let openCart = function () {
+    $("html").addClass("mini-cart-open");
+  };
+
+  let closeCart = function () {
+    $("html").removeClass("mini-cart-open");
+  };
+
+  let onCartButtonClick = function (event) {
+    event.preventDefault();
+
+    let isCartOpen = $("html").hasClass("mini-cart-open");
+
+    if (!isCartOpen) {
+      openCart();
+    } else {
+      closeCart();
+    }
+  };
+
   $(document).on("click", ".js-quantity-button", onQuantityButtonClick);
 
   $(document).on("change", ".js-quantity-field", onQuantityFieldChange);
 
   $(document).on("change", ".js-variant-radio", onVariantRadioChange);
+
+  $(document).on("submit", "#add-to-cart-form", onAddToCart);
+
+  $(document).on("click", "#mini-cart .js-remove-line", onLineRemoved);
+
+  $(document).on(
+    "click",
+    ".js-cart-link, .js-keep-shopping",
+    onCartButtonClick
+  );
 });

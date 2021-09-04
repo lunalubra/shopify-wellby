@@ -9,7 +9,7 @@
   {% assign cart_text = 'cart.button.count_html' | t: itemCount: cart.item_count %}
   {% assign cart_close_text = 'cart.button.close' | t %}
 
-  <a class="cart-link text-link" href="/cart">
+  <a class="js-cart-link cart-link text-link" href="/cart">
     <span class="cart-text">{{cart_text}}</span>
     <span class="cart-close-text">{{cart_close_text}}</span>
   </a>
