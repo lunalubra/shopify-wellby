@@ -1,0 +1,17 @@
+<header class="header-global">
+
+  <a class="logo" href="/">
+    <img src="{{ 'logo.svg' | asset_url }}" alt="{{ 'general.shop.title' | t }}">
+  </a>
+
+  <a class="shop-link text-link" href="/">{{'header.nav.shop' | t}}</a>
+
+  {% assign cart_text = 'cart.button.count_html' | t: itemCount: cart.item_count %}
+  {% assign cart_close_text = 'cart.button.close' | t %}
+
+  <a class="cart-link text-link" href="/cart">
+    <span class="cart-text">{{cart_text}}</span>
+    <span class="cart-close-text">{{cart_close_text}}</span>
+  </a>
+
+</header>

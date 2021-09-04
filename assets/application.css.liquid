@@ -1,2 +1,391 @@
-// Put your styles in this file.
-// Note: "@import" rules aren’t supported.
+:root {
+  --headline-font: "Georgia", "Times New Roman", Times, serif;
+  --text-font: "Helvetica Neue", Arial, Helvetica, sans-serif;
+
+  --black: #000000;
+  --white: #ffffff;
+
+  --light-black: #333333;
+
+  --text-color: #555555;
+  --text-color-white: #cccccc;
+  --text-color-light: #707070;
+  --text-color-light-white: #aaaaaa;
+
+  --gold: #bea482;
+
+  --background-color: #f7f2ea;
+  --header-background-color: #eee6dd;
+  --footer-background-color: #f4ede6;
+  --border-color: rgba(0, 0, 0, 0.15);
+  --border-color-white: rgba(255, 255, 255, 0.15);
+
+  --standard-border: 1px solid var(--border-color);
+  --standard-border-white: 1px solid var(--border-color-white);
+
+  --line-global: 20px;
+  --gutter-global: var(--line-global);
+  --offset-global: calc(var(--line-global) * 2);
+
+  --header-height: calc(var(--line-global) * 4);
+
+  --type-headline-lg: 50px;
+  --type-headline-med: 30px;
+  --type-body-med: 15px;
+  --type-body-sm: 13px;
+
+  --type-bold: 700;
+  --type-book: 400;
+}
+
+/* Base */
+* {
+  font-family: var(--text-font);
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: var(--black);
+  line-height: var(--line-global);
+}
+
+body {
+  font-size: var(--type-body-med);
+  background-color: var(--background-color);
+  background-image: url('{{"background.jpg" | asset_url}}');
+  background-size: 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  padding-top: calc(var(--header-height) + var(--offset-global));
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  font-weight: var(--type-book);
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+/* Mixins */
+.header-global,
+.footer-bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h4,
+.h4,
+.text-link {
+  font-size: var(--type-body-sm);
+  font-weight: var(--type-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.075em;
+}
+
+/* Styleguide */
+h1,
+.h1,
+h2,
+.h2 {
+  font-family: var(--headline-font);
+  font-weight: var(--type-bold);
+  color: var(--light-black);
+}
+
+h1,
+.h1 {
+  font-size: var(--type-headline-lg);
+  line-height: calc(var(--line-global) * 3);
+}
+
+h2,
+.h2 {
+  font-size: var(--type-headline-med);
+  line-height: calc(var(--line-global) * 2);
+}
+
+h4,
+.h4 {
+  color: var(--light-black);
+}
+
+a {
+  color: var(--text-color);
+}
+
+a:hover {
+  opacity: 0.75;
+}
+
+p {
+  color: var(--text-color);
+}
+
+p a {
+  border-bottom: var(--standard-border);
+}
+
+p a:hover {
+  border-bottom-color: var(--black);
+}
+
+.text-link {
+  color: var(--black);
+}
+
+/* Utility Classes */
+.wrapper {
+  padding-left: var(--offset-global);
+  padding-right: var(--offset-global);
+}
+
+.grid {
+  display: grid;
+  gap: var(--gutter-global);
+}
+
+.grid > * {
+  min-width: 0;
+  min-height: 0;
+}
+
+.grid.collapse {
+  gap: 0;
+}
+
+.two-columns {
+  grid-template-columns: 1fr 1fr;
+}
+
+.valign-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ta-center {
+  text-align: center;
+}
+
+.text-white {
+  color: var(--white);
+}
+
+.text-white h1 {
+  color: var(--white);
+}
+
+.text-white .h1 {
+  color: var(--white);
+}
+
+.text-white h2 {
+  color: var(--white);
+}
+
+.text-white .h2 {
+  color: var(--white);
+}
+
+.text-white h3 {
+  color: var(--white);
+}
+
+.text-white .h3 {
+  color: var(--white);
+}
+
+.text-white h4 {
+  color: var(--white);
+}
+
+.text-white .h4 {
+  color: var(--white);
+}
+
+.text-white a {
+  color: var(--white);
+}
+
+.text-white p {
+  color: var(--text-color-white);
+}
+
+.text-white .accent-color {
+  color: var(--text-color-white);
+}
+
+/* Header */
+.header-global {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  padding: var(--line-global) var(--offset-global);
+  background-color: var(--header-background-color);
+}
+
+.header-global .shop-link {
+  order: -1;
+}
+
+.header-global .cart-close-text {
+  display: none;
+}
+
+/* Footer */
+.footer-global {
+  background-color: var(--footer-background-color);
+  margin-top: var(--offset-global);
+  border-top: var(--standard-border);
+}
+
+.footer-global h4 {
+  margin-bottom: var(--line-global);
+}
+
+.footer-top,
+.footer-bottom {
+  padding: var(--offset-global);
+}
+
+.footer-top {
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+.footer-bottom {
+  border-top: var(--standard-border);
+}
+
+.social-links a {
+  display: inline-block;
+}
+
+.social-links a:not(:last-child) {
+  margin-right: calc(var(--line-global) / 2);
+}
+
+/* Index */
+
+.index-top {
+  height: 50vh;
+  min-height: 400px;
+  padding-bottom: var(--offset-global);
+}
+
+/* Shared Product Styles */
+.product-info-section {
+  color: var(--white);
+  background-color: var(--light-black);
+  padding: var(--offset-global);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.product-info-section h1 {
+  color: var(--white);
+}
+
+.product-info-section .h1 {
+  color: var(--white);
+}
+
+.product-info-section h2 {
+  color: var(--white);
+}
+
+.product-info-section .h2 {
+  color: var(--white);
+}
+
+.product-info-section h3 {
+  color: var(--white);
+}
+
+.product-info-section .h3 {
+  color: var(--white);
+}
+
+.product-info-section h4 {
+  color: var(--white);
+}
+
+.product-info-section .h4 {
+  color: var(--white);
+}
+
+.product-info-section a {
+  color: var(--white);
+}
+
+.product-info-section p {
+  color: var(--text-color-white);
+}
+
+.product-info-section .accent-color {
+  color: var(--text-color-white);
+}
+
+.product-info-section .product-title {
+  padding: var(--line-global) 0;
+  margin: auto 0;
+}
+
+.product-info-section .price {
+  display: inline-block;
+  font-size: var(--line-global);
+  color: var(--text-color-white);
+  font-weight: var(--type-book);
+  vertical-align: super;
+}
+
+.product-info-section .below-title {
+  max-width: 396px;
+  margin: 0 auto;
+}
+
+.product-info-section p {
+  margin-bottom: var(--line-global);
+}
+
+/* Product Card */
+.product-card .card-image a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.product-card .card-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.product-card:nth-child(odd) .card-image {
+  grid-column: 0;
+  grid-row: 1;
+}
